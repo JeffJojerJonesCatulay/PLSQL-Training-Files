@@ -1,0 +1,45 @@
+-- CREATE OR REPLACE TRIGGER t_people
+-- AFTER INSERT OR UPDATE OR DELETE ON people
+-- FOR EACH ROW
+-- ENABLE
+-- DECLARE
+-- begin
+--   IF INSERTING THEN
+--     dbms_output.put_line('Inserted');
+--   ELSIF UPDATING THEN
+--      dbms_output.put_line('Updated');
+--   ELSIF DELETING THEN
+--      dbms_output.put_line('Deleted');
+--   END IF;
+-- end;
+
+-- CREATE OR REPLACE TRIGGER t_people_backup 
+-- BEFORE INSERT OR UPDATE OR DELETE ON people
+-- FOR EACH ROW
+-- ENABLE
+-- BEGIN
+--   IF INSERTING THEN
+--     insert into people_backup (id, people_name, people_age)
+--     values (:NEW.id, :NEW.people_name, :NEW.people_age);
+--   ELSIF UPDATING THEN
+--     UPDATE people_backup SET id = :NEW.id, people_name = :NEW.people_name, people_age = :NEW.people_age
+--     WHERE id = :OLD.id;
+--   ELSIF DELETING THEN
+--     DELETE FROM people_backup WHERE id = :OLD.id;
+--   END IF;
+-- END;
+
+-- CREATE OR REPLACE TRIGGER audit_trigger
+-- AFTER DDL ON SCHEMA
+-- begin
+-- -- (ddl_date, ddl_user, obj_type, obj_name, operation)
+--   insert into schema_audit 
+--   values(
+--     sysdate,
+--     sys_context('USERENV', 'CURRENT_USER'),
+--     ora_dict_obj_type, 
+--     ora_dict_obj_name,
+--     ora_sysevent
+--   );
+-- end;
+/
