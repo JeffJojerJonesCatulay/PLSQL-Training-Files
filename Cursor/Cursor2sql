@@ -1,0 +1,12 @@
+SET SERVEROUTPUT ON;
+-- CURSOR FOR LOOP
+DECLARE
+    v_name people.people_name%type;
+    CURSOR p_cursor(p_id people.id%type) IS SELECT * FROM people WHERE id >= p_id;
+BEGIN
+    FOR i IN p_cursor(2) 
+    LOOP
+        dbms_output.put_line(i.people_name || ' ' || i.people_age);
+    END LOOP;
+END;
+/
