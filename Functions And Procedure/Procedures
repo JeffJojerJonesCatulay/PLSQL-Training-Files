@@ -1,0 +1,16 @@
+CREATE OR REPLACE PROCEDURE p_proc (name VARCHAR2) IS 
+    msg VARCHAR2(20) := 'Hello World ';
+BEGIN
+    dbms_output.put_line(msg || name);
+END;
+/
+
+EXEC p_proc('Jeff');
+EXECUTE p_proc;
+
+SET SERVEROUTPUT ON;
+BEGIN
+    p_proc;
+END; 
+/
+-- WITH PARAM

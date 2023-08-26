@@ -1,0 +1,17 @@
+SET SERVEROUTPUT ON;
+
+CREATE OR REPLACE FUNCTION square(num NUMBER)
+RETURN NUMBER IS
+
+result NUMBER;
+
+BEGIN
+    result := num * num;
+    RETURN result;
+END;
+/
+
+BEGIN
+    dbms_output.put_line(square(2));
+END;
+/
